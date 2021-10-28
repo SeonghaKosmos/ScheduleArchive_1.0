@@ -46,6 +46,8 @@ public class Loader extends PrototypeController {
 
     public static boolean disAbleCreator = false;
 
+    public static boolean newDayJustSummoned;
+
     public void initialize(){
         new Thread(setUpBackups).start();
     }
@@ -88,6 +90,12 @@ public class Loader extends PrototypeController {
 
     @FXML
     public void resumeCreation() throws IOException {
+
+
+        //timeline reset flag
+        newDayJustSummoned = true;
+
+        TimeLine.currentLayout = 0;
         loadData();
 
         addNoData(DateTimeModel.getCurrentTimeInSeconds());
@@ -124,6 +132,10 @@ public class Loader extends PrototypeController {
 
 
     public void loadDaysOfOld() throws IOException {
+
+        //timeline reset flag
+        newDayJustSummoned = true;
+        TimeLine.currentLayout = 0;
         loadData();
         Table.updateData(ArchiveDBModel.archive);
         disableAndGotoStats();

@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.Label;
+import main.Controllers.Loader.Loader;
 import main.Controllers.PrototypeController;
 import main.Controllers.Stats.InfographicsNavigationTab.InfographicsNavigationTab;
 import main.Controllers.Stats.Stats;
@@ -170,7 +171,10 @@ public class TimeLine extends PrototypeController {
 
         configureDateChangePoint(startTimeSecs - startTimeSecs % FIVE_MINS_IN_SECONDS);
 
-        if (currentLayout > 100) {
+        if (currentLayout > 100 || Loader.newDayJustSummoned) {
+
+            //prevent future resets
+            Loader.newDayJustSummoned = false;
             currentLayout = -(scrollableWidth - screenWidth);
             Stats.currentTimelineLayoutInitialized = true;
         }
