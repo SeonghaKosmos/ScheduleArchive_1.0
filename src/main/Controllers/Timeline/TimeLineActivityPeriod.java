@@ -129,6 +129,7 @@ public class TimeLineActivityPeriod extends Pane {
     public void addNoteTag(){
         if (!children.contains(noteTag)){
             children.add(noteTag);
+            System.out.println("test");
         }
     }
 
